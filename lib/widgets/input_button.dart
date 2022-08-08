@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro/store/pomodoro.store.dart';
+import 'package:provider/provider.dart';
 
 class InputButton extends StatelessWidget {
   final IconData icon;
@@ -12,12 +14,13 @@ class InputButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final store = Provider.of<PomodoroStore>(context);
     return ElevatedButton(
       onPressed: function,
       style: ElevatedButton.styleFrom(
         shape: const CircleBorder(),
         padding: const EdgeInsets.all(16.0),
-        primary: Colors.red,
+        primary: store.isWorking() ? Colors.red : Colors.green,
       ),
       child: Icon(
         icon,
